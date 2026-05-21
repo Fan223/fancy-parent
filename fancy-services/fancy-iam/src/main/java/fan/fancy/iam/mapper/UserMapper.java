@@ -1,7 +1,7 @@
 package fan.fancy.iam.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import fan.fancy.iam.api.pojo.bo.UserBO;
+import fan.fancy.api.iam.pojo.bo.UserBO;
 import fan.fancy.iam.pojo.entity.UserDO;
 
 /**

@@ -1,4 +1,4 @@
-package fan.fancy.iam.api.pojo.entity;
+package fan.fancy.api.iam.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import fan.fancy.starter.mybatis.plus.entity.MetaDO;

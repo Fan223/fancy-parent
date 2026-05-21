@@ -1,7 +1,7 @@
 package fan.fancy.iam.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import fan.fancy.iam.api.pojo.entity.UserIdentityDO;
+import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
 
 /**
  * 用户身份表 Mapper 接口

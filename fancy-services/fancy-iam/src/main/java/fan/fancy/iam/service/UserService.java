@@ -1,7 +1,7 @@
 package fan.fancy.iam.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import fan.fancy.iam.api.pojo.entity.UserIdentityDO;
+import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
 import fan.fancy.iam.pojo.entity.UserDO;
 import fan.fancy.iam.pojo.query.UserQuery;
 

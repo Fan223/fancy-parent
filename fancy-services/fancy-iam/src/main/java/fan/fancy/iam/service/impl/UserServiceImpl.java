@@ -2,7 +2,7 @@ package fan.fancy.iam.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import fan.fancy.iam.api.pojo.entity.UserIdentityDO;
+import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
 import fan.fancy.iam.mapper.UserIdentityMapper;
 import fan.fancy.iam.mapper.UserMapper;
 import fan.fancy.iam.pojo.entity.UserDO;
@@ -81,6 +81,9 @@ public class UserServiceImpl implements UserService {
             userIdentityDO.setUserId(id);
             return userIdentityMapper.insert(userIdentityDO);
         }
-        return userIdentityMapper.insert(userIdentityDO);
+
+        userIdentityDO.setId(userIdentity.getId());
+        userIdentityDO.setUserId(userIdentity.getUserId());
+        return userIdentityMapper.updateById(userIdentityDO);
     }
 }

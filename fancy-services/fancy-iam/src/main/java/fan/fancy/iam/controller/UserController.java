@@ -1,8 +1,8 @@
 package fan.fancy.iam.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import fan.fancy.iam.api.pojo.bo.UserBO;
-import fan.fancy.iam.api.pojo.entity.UserIdentityDO;
+import fan.fancy.api.iam.pojo.bo.UserBO;
+import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
 import fan.fancy.iam.converter.IamConverter;
 import fan.fancy.iam.pojo.dto.UserDTO;
 import fan.fancy.iam.pojo.entity.UserDO;
@@ -10,7 +10,7 @@ import fan.fancy.iam.pojo.query.UserQuery;
 import fan.fancy.iam.pojo.vo.UserVO;
 import fan.fancy.iam.service.UserService;
 import fan.fancy.toolkit.http.Response;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/iam/users")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;

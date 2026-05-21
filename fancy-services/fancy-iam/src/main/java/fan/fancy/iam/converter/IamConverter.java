@@ -1,7 +1,7 @@
 package fan.fancy.iam.converter;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import fan.fancy.iam.api.pojo.bo.UserBO;
+import fan.fancy.api.iam.pojo.bo.UserBO;
 import fan.fancy.iam.pojo.dto.MenuDTO;
 import fan.fancy.iam.pojo.dto.PermissionDTO;
 import fan.fancy.iam.pojo.dto.RoleDTO;

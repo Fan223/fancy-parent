@@ -1,7 +1,7 @@
 package fan.fancy.iam.pojo.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import fan.fancy.iam.api.pojo.entity.UserIdentityDO;
+import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
 import fan.fancy.starter.mybatis.plus.entity.MetaDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

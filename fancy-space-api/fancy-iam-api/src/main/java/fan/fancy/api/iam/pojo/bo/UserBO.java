@@ -1,6 +1,6 @@
-package fan.fancy.iam.api.pojo.bo;
+package fan.fancy.api.iam.pojo.bo;
 
-import fan.fancy.iam.api.pojo.entity.UserIdentityDO;
+import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
 import lombok.Data;
 
 import java.util.ArrayList;

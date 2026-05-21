@@ -32,6 +32,10 @@
             <groupId>fan</groupId>
             <artifactId>fancy-jackson-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>fan</groupId>
+            <artifactId>fancy-resource-server-starter</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.mysql</groupId>
