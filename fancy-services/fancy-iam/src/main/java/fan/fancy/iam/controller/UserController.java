@@ -1,15 +1,13 @@
 package fan.fancy.iam.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import fan.fancy.api.iam.pojo.bo.UserBO;
-import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
 import fan.fancy.iam.converter.IamConverter;
 import fan.fancy.iam.pojo.dto.UserDTO;
 import fan.fancy.iam.pojo.entity.UserDO;
 import fan.fancy.iam.pojo.query.UserQuery;
 import fan.fancy.iam.pojo.vo.UserVO;
 import fan.fancy.iam.service.UserService;
-import fan.fancy.toolkit.http.Response;
+import fancy.boot.core.http.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,9 +40,9 @@ public class UserController {
     }
 
     @PostMapping
-    public Response<Integer> create(@RequestBody UserDTO userDTO) {
-        UserDO userDO = iamConverter.convertUser(userDTO);
-        return Response.success(userService.create(userDO));
+    public Response<Long> create(@RequestBody UserDTO userDTO) {
+        Long userId = userService.createUserWithAuth(userDTO);
+        return Response.success(userId);
     }
 
     @PutMapping("/{id}")
@@ -64,23 +62,5 @@ public class UserController {
     @DeleteMapping
     public Response<Integer> deleteByIds(@RequestParam List<String> ids) {
         return Response.success(userService.deleteByIds(ids));
-    }
-
-    @GetMapping("/auth/{identifier}")
-    public UserBO getByIdentifier(@PathVariable String identifier) {
-        UserIdentityDO userIdentityDO = userService.getByIdentifier(identifier);
-        if (userIdentityDO == null) {
-            return null;
-        }
-        UserDO userDO = userService.getById(String.valueOf(userIdentityDO.getUserId()));
-        UserBO userBO = iamConverter.convertUserBO(userDO);
-        userBO.getUserIdentities().add(userIdentityDO);
-        return userBO;
-    }
-
-    @PostMapping("/auth/creatUser")
-    public Response<Integer> createUser(@RequestBody UserBO userBO) {
-        UserDO userDO = iamConverter.convertUserBO(userBO);
-        return Response.success(userService.createUser(userDO, userBO.getUserIdentities()));
     }
 }

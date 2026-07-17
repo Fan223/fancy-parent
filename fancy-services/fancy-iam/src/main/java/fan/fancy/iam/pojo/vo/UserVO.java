@@ -2,8 +2,6 @@ package fan.fancy.iam.pojo.vo;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * 用户展示类.
  *
@@ -36,9 +34,4 @@ public class UserVO {
      * 生日.
      */
     private String birthday;
-
-    /**
-     * 用户身份列表.
-     */
-    private List<UserIdentityVO> userIdentities;
 }

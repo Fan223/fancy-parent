@@ -16,6 +16,11 @@ public class UserDTO {
     private String id;
 
     /**
+     * 用户名（认证身份标识）.
+     */
+    private String username;
+
+    /**
      * 密码.
      */
     private String password;

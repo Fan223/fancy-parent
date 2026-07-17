@@ -8,7 +8,7 @@ import fan.fancy.iam.pojo.query.MenuQuery;
 import fan.fancy.iam.pojo.vo.MenuVO;
 import fan.fancy.iam.service.MenuService;
 import fan.fancy.toolkit.builder.TreeBuilder;
-import fan.fancy.toolkit.http.Response;
+import fancy.boot.core.http.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

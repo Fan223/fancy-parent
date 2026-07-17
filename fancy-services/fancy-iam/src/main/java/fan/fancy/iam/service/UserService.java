@@ -1,7 +1,7 @@
 package fan.fancy.iam.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
+import fan.fancy.iam.pojo.dto.UserDTO;
 import fan.fancy.iam.pojo.entity.UserDO;
 import fan.fancy.iam.pojo.query.UserQuery;
 
@@ -26,7 +26,8 @@ public interface UserService {
 
     int deleteByIds(List<String> ids);
 
-    UserIdentityDO getByIdentifier(String identifier);
-
-    Integer createUser(UserDO userDO, List<UserIdentityDO> userIdentities);
+    /**
+     * 创建业务用户 + 绑定认证账号.
+     */
+    Long createUserWithAuth(UserDTO userDTO);
 }

@@ -1,6 +1,6 @@
 package fan.fancy.iam.pojo.query;
 
-import fan.fancy.starter.mybatis.plus.query.PageQuery;
+import fancy.starter.mybatis.plus.query.PageQuery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

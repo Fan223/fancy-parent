@@ -9,62 +9,42 @@
     </parent>
 
     <artifactId>fancy-space-parent</artifactId>
-    <version>${revision}</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>fancy-space-parent</name>
 
     <properties>
-        <revision>1.0.0</revision>
-        <fancy-platform.version>1.0.0</fancy-platform.version>
+        <spring-boot.version>4.1.0</spring-boot.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>fan</groupId>
-                <artifactId>fancy-web-starter</artifactId>
-                <version>${fancy-platform.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>fan</groupId>
-                <artifactId>fancy-mybatis-plus-starter</artifactId>
-                <version>${fancy-platform.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>fan</groupId>
-                <artifactId>fancy-redis-starter</artifactId>
-                <version>${fancy-platform.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>fan</groupId>
-                <artifactId>fancy-jackson-starter</artifactId>
-                <version>${fancy-platform.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>fan</groupId>
-                <artifactId>fancy-log-starter</artifactId>
-                <version>${fancy-platform.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>fan</groupId>
-                <artifactId>fancy-validation-starter</artifactId>
-                <version>${fancy-platform.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>fan</groupId>
-                <artifactId>fancy-resource-server-starter</artifactId>
-                <version>${fancy-platform.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>fan</groupId>
-                <artifactId>fancy-admin-client-starter</artifactId>
-                <version>${fancy-platform.version}</version>
+                <artifactId>fancy-boot-bom</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>fan</groupId>
+            <artifactId>fancy-toolkit</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -74,15 +54,6 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                        </path>
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                        </path>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok-mapstruct-binding</artifactId>
-                            <version>0.2.0</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

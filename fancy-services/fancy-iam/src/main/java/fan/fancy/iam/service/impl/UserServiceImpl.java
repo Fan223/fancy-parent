@@ -2,9 +2,11 @@ package fan.fancy.iam.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
-import fan.fancy.iam.mapper.UserIdentityMapper;
+import fan.fancy.api.auth.pojo.dto.AuthBindRequest;
+import fan.fancy.api.auth.pojo.enums.IdentityType;
+import fan.fancy.api.auth.service.AuthUserApi;
 import fan.fancy.iam.mapper.UserMapper;
+import fan.fancy.iam.pojo.dto.UserDTO;
 import fan.fancy.iam.pojo.entity.UserDO;
 import fan.fancy.iam.pojo.query.UserQuery;
 import fan.fancy.iam.service.UserService;
@@ -14,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -27,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    private final UserIdentityMapper userIdentityMapper;
+    private final AuthUserApi authUserApi;
 
     @Override
     public Page<UserDO> page(UserQuery query) {
@@ -61,29 +64,33 @@ public class UserServiceImpl implements UserService {
         return userMapper.deleteByIds(ids);
     }
 
-    @Override
-    public UserIdentityDO getByIdentifier(String identifier) {
-        LambdaQueryWrapper<UserIdentityDO> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserIdentityDO::getIdentifier, identifier);
-        return userIdentityMapper.selectOne(queryWrapper);
-    }
-
-    @Override
+    /**
+     * 创建业务用户 + 绑定认证账号.
+     *
+     * <p>两步在同一事务中：若 auth.bind 失败，IAM 业务用户也会回滚。
+     */
     @Transactional
-    public Integer createUser(UserDO userDO, List<UserIdentityDO> userIdentities) {
-        UserIdentityDO userIdentityDO = userIdentities.getFirst();
-        UserIdentityDO userIdentity = getByIdentifier(userIdentityDO.getIdentifier());
-        if (userIdentity == null) {
-            long id = IdUtils.generateSnowflakeId();
-            userDO.setId(id);
-            create(userDO);
-
-            userIdentityDO.setUserId(id);
-            return userIdentityMapper.insert(userIdentityDO);
+    public Long createUserWithAuth(UserDTO userDTO) {
+        long userId = IdUtils.generateSnowflakeId();
+        UserDO userDO = new UserDO();
+        userDO.setId(userId);
+        userDO.setNickname(userDTO.getNickname());
+        userDO.setAvatar(userDTO.getAvatar());
+        if (userDTO.getGender() != null) {
+            userDO.setGender(Integer.valueOf(userDTO.getGender()));
         }
+        if (userDTO.getBirthday() != null && !userDTO.getBirthday().isBlank()) {
+            userDO.setBirthday(LocalDateTime.parse(userDTO.getBirthday()));
+        }
+        userMapper.insert(userDO);
 
-        userIdentityDO.setId(userIdentity.getId());
-        userIdentityDO.setUserId(userIdentity.getUserId());
-        return userIdentityMapper.updateById(userIdentityDO);
+        AuthBindRequest bindReq = new AuthBindRequest();
+        bindReq.setUserId(userId);
+        bindReq.setIdentityType(IdentityType.USERNAME);
+        bindReq.setIdentifier(userDTO.getUsername());
+        bindReq.setCredential(userDTO.getPassword());
+        authUserApi.bind(bindReq);
+
+        return userId;
     }
 }

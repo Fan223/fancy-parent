@@ -4,7 +4,7 @@
     <parent>
         <groupId>fan</groupId>
         <artifactId>fancy-space-api</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>fancy-iam-api</artifactId>
@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>fan</groupId>
-            <artifactId>fancy-mybatis-plus-starter</artifactId>
+            <artifactId>fancy-mybatis-plus-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

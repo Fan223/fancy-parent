@@ -4,8 +4,8 @@
     <parent>
         <groupId>fan</groupId>
         <artifactId>fancy-space-parent</artifactId>
-        <version>${revision}</version>
-        <relativePath>../fancy-space-parent/pom.xml</relativePath>
+        <version>1.0.0</version>
+        <relativePath>../fancy-space-parent</relativePath>
     </parent>
 
     <artifactId>fancy-space-api</artifactId>

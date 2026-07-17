@@ -1,10 +1,6 @@
 package fan.fancy.api.iam.pojo.bo;
 
-import fan.fancy.api.iam.pojo.entity.UserIdentityDO;
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 用户业务类.
@@ -38,9 +34,4 @@ public class UserBO {
      * 生日.
      */
     private String birthday;
-
-    /**
-     * 用户身份列表.
-     */
-    private List<UserIdentityDO> userIdentities = new ArrayList<>();
 }
