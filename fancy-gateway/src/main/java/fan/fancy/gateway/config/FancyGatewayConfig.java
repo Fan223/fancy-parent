@@ -34,7 +34,8 @@ public class FancyGatewayConfig {
                                                          ReactiveAccessDeniedHandler accessDeniedHandler,
                                                          Converter<Jwt, Mono<AbstractAuthenticationToken>> reactiveJwtAuthenticationConverter,
                                                          ObjectProvider<ReactiveAuthorizeCustomizer> authorizeCustomizers,
-                                                         ObjectProvider<ReactiveInternalAuthenticationFilter> internalAuthenticationFilterProvider) {
+                                                         ObjectProvider<ReactiveInternalAuthenticationFilter> internalAuthenticationFilterProvider
+    ) {
         ReactiveResourceServerConfigurer.applyDefaults(http, authenticationEntryPoint, accessDeniedHandler, reactiveJwtAuthenticationConverter, authorizeCustomizers, internalAuthenticationFilterProvider);
         http.authorizeExchange(spec -> spec
                 .pathMatchers("/api/**").permitAll()

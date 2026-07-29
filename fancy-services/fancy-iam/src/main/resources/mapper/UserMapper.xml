@@ -2,19 +2,4 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fan.fancy.iam.mapper.UserMapper">
 
-    <select id="selectUser" resultType="fan.fancy.api.iam.pojo.bo.UserBO">
-        select user.id,
-               max(case when ui.identity = 1 then ui.identifier end) as username,
-               user.password,
-               user.avatar,
-               user.nickname,
-               user.birthday,
-               user.gender,
-               max(case when ui.identity = 2 then ui.identifier end) as phone,
-               max(case when ui.identity = 3 then ui.identifier end) as email
-        from user
-                 left join user_identity ui on user.id = ui.user_id
-        where user.id = #{userId}
-        group by user.id;
-    </select>
 </mapper>

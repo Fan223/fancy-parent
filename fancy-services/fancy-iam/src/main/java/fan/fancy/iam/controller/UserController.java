@@ -1,8 +1,8 @@
 package fan.fancy.iam.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import fan.fancy.api.iam.pojo.dto.UserDTO;
 import fan.fancy.iam.converter.IamConverter;
-import fan.fancy.iam.pojo.dto.UserDTO;
 import fan.fancy.iam.pojo.entity.UserDO;
 import fan.fancy.iam.pojo.query.UserQuery;
 import fan.fancy.iam.pojo.vo.UserVO;
@@ -34,15 +34,15 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public Response<UserVO> getById(@PathVariable String id) {
+    public Response<UserVO> getById(@PathVariable("id") String id) {
         UserDO userDO = userService.getById(id);
         return Response.success(iamConverter.convertUser(userDO));
     }
 
     @PostMapping
-    public Response<Long> create(@RequestBody UserDTO userDTO) {
-        Long userId = userService.createUserWithAuth(userDTO);
-        return Response.success(userId);
+    public Response<Integer> create(@RequestBody UserDTO userDTO) {
+        UserDO userDO = iamConverter.convertUser(userDTO);
+        return Response.success(userService.create(userDO));
     }
 
     @PutMapping("/{id}")

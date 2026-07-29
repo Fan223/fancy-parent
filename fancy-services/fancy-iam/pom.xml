@@ -16,11 +16,12 @@
             <artifactId>fancy-iam-api</artifactId>
             <version>1.0.0</version>
         </dependency>
+
         <dependency>
-            <groupId>fan</groupId>
-            <artifactId>fancy-auth-api</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
+
         <dependency>
             <groupId>fan</groupId>
             <artifactId>fancy-web-spring-boot-starter</artifactId>
@@ -59,4 +60,13 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

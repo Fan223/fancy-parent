@@ -1,4 +1,4 @@
-package fan.fancy.iam.pojo.dto;
+package fan.fancy.api.iam.pojo.dto;
 
 import lombok.Data;
 

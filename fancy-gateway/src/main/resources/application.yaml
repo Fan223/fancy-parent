@@ -35,3 +35,7 @@ spring:
               uri: lb://fancy-iam
               predicates:
                 - Path=/iam/**
+            - id: fancy-blog
+              uri: lb://fancy-blog
+              predicates:
+                - Path=/blog/**

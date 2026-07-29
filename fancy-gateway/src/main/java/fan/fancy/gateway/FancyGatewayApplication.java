@@ -12,7 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class FancyGatewayApplication {
-    static void main() {
-        SpringApplication.run(FancyGatewayApplication.class);
+    static void main(String[] args) {
+        SpringApplication.run(FancyGatewayApplication.class, args);
     }
 }

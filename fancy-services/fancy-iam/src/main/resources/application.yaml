@@ -19,7 +19,3 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://127.0.0.1:10100
-
-fancy:
-  security:
-    internal-token: fancy-internal-token
